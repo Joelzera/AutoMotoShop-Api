@@ -9,9 +9,7 @@ const pool = mysql.createPool({
 })
 
 
-const execute = (query: string, params: any[]) => {
-    //A query é tipada sempre como uma string
-    //O params é tipado como uma array que pode receber qualquer tipo de dado         
+const execute = (query: string, params: string[]) => {    
     return new Promise ((resolve, reject) =>{
         pool.query(query, params, (error, result) =>{
             if(error) { reject(error)} else { resolve(result)}
