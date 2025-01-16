@@ -15,6 +15,17 @@ app.use(cors())
 
 mongoose.connect('mongodb://localhost:27017/auto_moto')
 
+app.get('/user/login', async (req, res) => {
+    try {
+       const query = 'SELECT * FROM users WHERE email = ?'
+       const result = await execute(query, [req.body.email]) 
+       console.log(result)
+       res.send(result)
+    } catch (error) {
+        console.log(error, 'deu erro')
+    }
+})
+
 
 app.post('/user', async (req, res) => {
     try {
@@ -26,6 +37,16 @@ app.post('/user', async (req, res) => {
 
         console.log(result)
         res.send(result)
+    } catch (error) {
+        console.log(error, 'deu erro')
+    }
+})
+
+app.get('/car/:nome', async (req, res) =>{
+    try {
+        const data = await car.find({ nome: req.params.nome })
+        console.log(data)
+        res.send(data)
     } catch (error) {
         console.log(error, 'deu erro')
     }
@@ -51,6 +72,7 @@ app.post('/car', async (req, res) => {
         console.log(error)
     }
 })
+
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)
