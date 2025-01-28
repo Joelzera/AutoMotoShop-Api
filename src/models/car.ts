@@ -9,7 +9,8 @@ const dataSchema = new mongoose.Schema({
     cor:{type: String},
     cambio:{type: String},
     combustivel:{type: String},
-    quilometragem:{type: Number}
+    quilometragem:{type: Number},
+    ativo:{type: Boolean}
 })
 
 export = mongoose.model('car', dataSchema)

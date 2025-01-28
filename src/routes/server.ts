@@ -52,6 +52,16 @@ app.get('/car/:nome', async (req, res) =>{
     }
 })
 
+app.get('/car/all/:ativo', async (req, res) =>{
+    try {
+        const data = await car.find({ ativo: req.params.ativo})
+        console.log(data)
+        res.send(data)
+    } catch (error) {
+        console.log(error, 'deu um erro')
+    }
+})
+
 app.post('/car', async (req, res) => {
     const dataCar =  new car({
         nome: req.body.nome,
@@ -62,7 +72,8 @@ app.post('/car', async (req, res) => {
         cor: req.body.cor,
         cambio: req.body.cambio,
         combustivel: req.body.combustivel,
-        quilometragem: req.body.quilometragem
+        quilometragem: req.body.quilometragem,
+        ativo: true
     })
     try {
         const dataSaveCar =  await dataCar.save()
