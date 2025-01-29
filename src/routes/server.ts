@@ -4,6 +4,7 @@ import { execute } from '../../config/mysql.config'
 import cors from 'cors'
 import car from '../models/car'
 import mongoose from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -64,6 +65,7 @@ app.get('/car/all/:ativo', async (req, res) =>{
 
 app.post('/car', async (req, res) => {
     const dataCar =  new car({
+        id: uuidv4(),
         nome: req.body.nome,
         marca: req.body.marca,
         ano: req.body.ano,

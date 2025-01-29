@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const dataSchema = new mongoose.Schema({
+    id:{type: String},
     nome:{type: String},
     marca:{type: String},
     ano:{type: Number},
