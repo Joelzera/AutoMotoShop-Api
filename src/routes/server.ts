@@ -69,12 +69,14 @@ app.post('/car', async (req, res) => {
         nome: req.body.nome,
         marca: req.body.marca,
         ano: req.body.ano,
+        motor: req.body.motor,
         modelo: req.body.modelo,
         tipo: req.body.tipo,
         cor: req.body.cor,
         cambio: req.body.cambio,
         combustivel: req.body.combustivel,
         quilometragem: req.body.quilometragem,
+        preço: req.body.preço,
         ativo: true
     })
     try {
