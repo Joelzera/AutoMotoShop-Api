@@ -30,7 +30,7 @@ app.get('/user/login', async (req, res) => {
 
 app.post('/user', async (req, res) => {
     try {
-        const query = 'INSERT INTO users (email, password) VALUES (?,?)'
+        const query = 'INSERT INTO users (nome, email, password) VALUES (?,?,?)'
         const result = await execute(query, [
             req.body.email,
             req.body.password
