@@ -16,7 +16,7 @@ app.use(cors())
 
 mongoose.connect('mongodb://localhost:27017/auto_moto')
 
-app.get('/user/login', async (req, res) => {
+app.post('/user/login', async (req, res) => {
     try {
        const query = 'SELECT * FROM users WHERE email = ?'
        const result = await execute(query, [req.body.email]) 
@@ -30,8 +30,9 @@ app.get('/user/login', async (req, res) => {
 
 app.post('/user', async (req, res) => {
     try {
-        const query = 'INSERT INTO users (nome, email, password) VALUES (?,?,?)'
+        const query = 'INSERT INTO users (name, email, password) VALUES (?,?,?)'
         const result = await execute(query, [
+            req.body.name,
             req.body.email,
             req.body.password
         ])
@@ -46,6 +47,26 @@ app.post('/user', async (req, res) => {
 app.get('/car/:nome', async (req, res) =>{
     try {
         const data = await car.find({ nome: req.params.nome })
+        console.log(data)
+        res.send(data)
+    } catch (error) {
+        console.log(error, 'deu erro')
+    }
+})
+
+app.get('/car/marca/:marca', async (req, res) =>{
+    try {
+        const data = await car.find({ marca: req.params.marca })
+        console.log(data)
+        res.send(data)
+    } catch (error) {
+        console.log(error, 'deu erro')
+    }
+})
+
+app.get('/car/tipo/:tipo', async (req, res) =>{
+    try {
+        const data = await car.find({ tipo: req.params.tipo })
         console.log(data)
         res.send(data)
     } catch (error) {
