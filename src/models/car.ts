@@ -4,7 +4,7 @@ const dataSchema = new mongoose.Schema({
     id:{type: String},
     nome:{type: String},
     marca:{type: String},
-    ano:{type: Number},
+    ano:{type: String},
     motor:{type: String},
     modelo:{type: String},
     tipo:{type: String},
